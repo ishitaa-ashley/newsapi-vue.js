@@ -34,6 +34,7 @@ export default {
     },
     methods:{
       callurl(urlnow){
+        alert("MOVING TO NEWSPAGE");
         
         window.open(urlnow);
         console.log(urlnow);
@@ -66,6 +67,10 @@ li {
 li:last-child
 {
   border-bottom:2px solid gray;
+}
+li:hover
+{
+  cursor:pointer;
 }
 a {
   color: #42b983;
