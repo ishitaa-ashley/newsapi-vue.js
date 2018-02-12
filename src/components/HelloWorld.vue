@@ -2,10 +2,9 @@
  
 
  <div class="main">
-<button v-on:click="show">SHOW DATA
- </button>
+
  <ol>
-  <li v-for="title in titles" >{{title}}</li>
+  <li v-for="item in results" @click="callurl(`${item.url}`)" > {{item.title}} - {{item.author}}</li>
 </ol>
 
  </div>
@@ -25,28 +24,24 @@ export default {
       urls:[]
     }
   },
-  methods:{
-    show()
-    {
+  mounted(){
       axios.get("https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=e3dbee9cd0994fb28d300538611d2106")
     .then(response => {this.results = response.data.articles;
     console.log(this.results);
-    for(var x=0;x<this.results.length;x++)
-    {
-      this.titles.push(this.results[x].title);
-      this.urls.push(this.results[x].url);
-    }
-    //this.titles=this.results.title;
-    console.log(this.titles);
+   
 
     })
     },
-
-    beforeMount()
-    {
-      this.show();
+    methods:{
+      callurl(urlnow){
+        
+        window.open(urlnow);
+        console.log(urlnow);
+      }
     }
-  }
+
+    
+  
 }
 </script>
 
@@ -61,10 +56,16 @@ ul {
 }
 li {
 
-  
+  border:2px solid gray;
+  border-bottom: none;
   margin-left: 0px;
   padding-bottom:8px;
   text-align: left;
+  background-color: #FDF9EA;
+}
+li:last-child
+{
+  border-bottom:2px solid gray;
 }
 a {
   color: #42b983;
